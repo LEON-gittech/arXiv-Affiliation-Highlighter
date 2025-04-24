@@ -1,16 +1,8 @@
-<!--
- * @Author: LEON leon.kepler@bytedance.com
- * @Date: 2025-04-24 16:47:10
- * @LastEditors: LEON leon.kepler@bytedance.com
- * @LastEditTime: 2025-04-24 16:47:19
- * @FilePath: /arxiv_affiliation_highlighter/README.md
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 # 🎉 arXiv Affiliation Highlighter (Debug & Progress & Stop Button)
 
 **作者：** Zezhou Wang (<zzw.cs@smail.nju.edu.cn>)  
 **版本：** v1.4  
-**说明：** 在任意网页上自动识别并标注 arXiv 论文链接的作者机构，带缓存、日志面板、进度提示、停止按钮及 API Key 弹窗。
+**说明：** 在任意网页上自动识别并标注 arXiv 论文链接的作者机构，带缓存、日志面板、进度提示、停止按钮及 API Key 弹窗。（Dev 版本请前往https://github.com/LEON-gittech/arXiv-Affiliation-Highlighter.git查看并进行调试。）
 
 ---
 
@@ -28,15 +20,15 @@
 ## 📦 安装步骤
 
 1. **安装 Tampermonkey**  
-   - Chrome / Firefox / Edge 等浏览器插件市场搜索 “Tampermonkey” 并安装。  
-2. **新建油猴脚本**  
-   - 点击 Tampermonkey 图标 → “创建新脚本”  
-   - 将完整脚本内容复制粘贴到编辑器（已移除硬编码 API Key 部分）  
+   - 在 Chrome/Firefox/Edge 扩展市场搜索 **“Tampermonkey”** 并安装。  
+2. **安装脚本**  
+   - 打开 Tampermonkey 仪表盘，切换到 **“脚本市场”** 选项卡（或“导入”旁边）。  
+   - 搜索 **“arXiv Affiliation Highlighter”**，点击 **安装**。  
 3. **授权域名与权限**  
-   - 脚本顶部已声明对 `arxiv.org` 与 `api.openai.com` 的跨域请求权限  
+   - 脚本已声明对 `arxiv.org` 与 `api.openai.com` 的跨域请求权限，无需额外配置。  
 4. **首次运行**  
-   - 打开任意包含 arXiv 链接的页面，会弹出输入框提示填写 OpenAI API Key  
-   - 输入后脚本自动缓存，后续页面将无需重复输入  
+   - 打开任意包含 arXiv 链接的页面，第一次会弹出输入框提示填写 OpenAI API Key。  
+   - 输入后脚本会自动缓存，后续页面将无需重复输入。
 
 ---
 
@@ -75,4 +67,23 @@
 5. 注册“清空缓存”命令  
 6. 串行扫描并处理 arXiv 链接：  
    └─ fetchTitle → fetchAndAnnotate → annotate  
-7. 辅助：gmFetchText/gmFetchPdf/parseTitle/gmOpenAIExtractAffs  
+7. 辅助：gmFetchText/gmFetchPdf/parseTitle/gmOpenAIExtractAffs
+```
+
+---
+
+## 🤔 常见问题
+
+- **Q：提示“脚本停止”是哪里出错？**  
+  A：请打开浏览器控制台（F12）查看更详细的错误日志，或点击右下面板最后一条红色 ❌ 日志。  
+- **Q：如何更换 GPT 模型？**  
+  A：在脚本 `const MODEL = 'gpt-4o-mini';` 修改为 `gpt-3.5-turbo` 或 `gpt-4` 即可。  
+- **Q：缓存时间想改短？**  
+  A：调整 `CACHE_TTL` 值（单位毫秒），例如一天则设为 `1000*60*60*24`  
+
+---
+
+## 📬 反馈 & 贡献
+
+欢迎提 Issue 或 PR，让这个工具更加强大、有趣！  
+
